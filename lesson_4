@@ -1,4 +1,3 @@
-// Lesson4.java
 import java.util.Arrays;
 
 public class Lesson4 {
@@ -10,8 +9,7 @@ public class Lesson4 {
     public void checkSumSign() {
         int a = -25;
         int b = 5;
-        int sum = a + b;
-        if (sum >= 0) {
+        if (a + b >= 0) {
             System.out.println("Сумма положительная");
         } else {
             System.out.println("Сумма отрицательная");
@@ -40,8 +38,7 @@ public class Lesson4 {
     }
 
     public boolean isSumBetween10And20(int a, int b) {
-        int sum = a + b;
-        return sum >= 10 && sum <= 20;
+        return a + b >= 10 && a + b <= 20;
     }
 
     public String getNumberSign(int number) {
@@ -55,10 +52,11 @@ public class Lesson4 {
         return number < 0;
     }
 
-    public String repeatSentenceMultipleTimes(String sentence, int count) {
-        return sentence.repeat(count);
+    public String repeatSentenceMultipleTimes(String sentence, int count) { 
+        for (int i = 0; i < count; i++) { 
+              System.out.println(sentence);
+        } 
     }
-
     public boolean checkThatYearIsLeap(int year) {
         return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
     }
@@ -102,7 +100,9 @@ public class Lesson4 {
 
     public int[] createArrayWithInitialValue(int len, int initialValue) {
         int[] array = new int[len];
-        Arrays.fill(array, initialValue);
+        for (int i = 0; i < len; i++) {
+            array[i] = initialValue;
+        }
         return array;
     }
 
