@@ -1,0 +1,100 @@
+import static java.math.BigDecimal.valueOf;
+import java.util.Arrays;
+
+/**
+ * Класс сотрудника.
+ */
+class Employee {
+    private final String fullName;
+    private final String position;
+    private final String email;
+    private final String phone;
+    private final BigDecimal salary;
+    private final int age;
+
+    Employee(String fullName, String position, String email, String phone, BigDecimal salary, int age) {
+        this.fullName = fullName;
+        this.position = position;
+        this.email = email;
+        this.phone = phone;
+        this.salary = salary;
+        this.age = age;
+    }
+
+    void showInfo() {
+        System.out.printf("%s, %s, %s, %s, %s, %d%n", fullName, position, email, phone, salary, age);
+    }
+}
+
+/**
+ * Класс парка с аттракционами.
+ */
+class Park {
+    private final String name;
+    private final Attraction[] attractions;
+
+    Park(String name, Attraction[] attractions) {
+        this.name = name;
+        this.attractions = attractions;
+    }
+
+    void showInfo() {
+        System.out.println(name);
+        Arrays.stream(attractions).forEach(Attraction::showInfo);
+    }
+
+    /**
+     * Класс для аттракциона.
+     */
+    static class Attraction {
+        private final String name;
+        private final String workingHours;
+        private final int price;
+
+        Attraction(String name, String workingHours, int price) {
+            this.name = name;
+            this.workingHours = workingHours;
+            this.price = price;
+        }
+
+        void showInfo() {
+            System.out.printf("%s, %s, %d%n", name, workingHours, price);
+        }
+    }
+}
+
+/**
+ * Утилитарный класс для создания сотрудников.
+ */
+class EmployeeUtils {
+    static Employee createEmployee(String fullName, String position, String phone, BigDecimal salary, int age) {
+        String[] nameParts = fullName.split(" ");
+        String firstName = nameParts[0].toLowerCase();
+        String lastName = nameParts[1].toLowerCase();
+        String email = firstName + "." + lastName + "@company.com";
+        return new Employee(fullName, position, email, phone, salary, age);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Employee[] employees = {
+            EmployeeUtils.createEmployee("Ivanov Ivan", "Engineer", "892312312", valueOf(30000.00), 30),
+            EmployeeUtils.createEmployee("Petrov Petr", "Manager", "123456789", valueOf(50000.50), 35),
+            EmployeeUtils.createEmployee("Sidorova Olga", "Accountant", "987654321", valueOf(40000.75), 45),
+            EmployeeUtils.createEmployee("Kozlov Sergey", "Developer", "555666777", valueOf(60000.00), 28),
+            EmployeeUtils.createEmployee("Ivanova Maria", "HR", "999888777", valueOf(45000.25), 32)
+        };
+
+        Arrays.stream(employees).forEach(Employee::showInfo);
+
+        Attraction[] attractions = {
+            new Park.Attraction("Колесо обозрения", "10:00 - 22:00", 5),
+            new Park.Attraction("Американские горки", "11:00 - 20:00", 10),
+            new Park.Attraction("Карусель", "10:30 - 21:00", 3)
+        };
+
+        Park park = new Park("Парк Аттракционов", attractions);
+        park.showInfo();
+    }
+}
