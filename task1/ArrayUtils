@@ -1,0 +1,29 @@
+public class ArrayUtils {
+    private static final int EXPECTED_ARRAY_SIZE = 4;
+
+    public static int sumArrayElements(String[][] array) throws InvalidArraySizeException, InvalidArrayDataException {
+        validateArraySize(array);
+
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                sum += parseElement(array[i][j], i, j);
+            }
+        }
+        return sum;
+    }
+
+    private static void validateArraySize(String[][] array) throws InvalidArraySizeException {
+        if (array.length != EXPECTED_ARRAY_SIZE || array[0].length != EXPECTED_ARRAY_SIZE) {
+            throw new InvalidArraySizeException("Array size must be " + EXPECTED_ARRAY_SIZE + "x" + EXPECTED_ARRAY_SIZE);
+        }
+    }
+
+    private static int parseElement(String element, int row, int col) throws InvalidArrayDataException {
+        try {
+            return Integer.parseInt(element);
+        } catch (NumberFormatException e) {
+            throw new InvalidArrayDataException("Invalid element at position [" + row + "][" + col + "]");
+        }
+    }
+}
