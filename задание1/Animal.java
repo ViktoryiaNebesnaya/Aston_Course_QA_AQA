@@ -1,10 +1,11 @@
 public abstract class Animal {
-    private static int animalCount = 0;
+    protected static int animalCount = 0;
 
-    private String name;
-    private int runLimit;
-    private int swimLimit;
-    private int food;
+    protected String name;
+    protected int runLimit;
+    protected int swimLimit;
+    protected int food;
+    protected static final int MINIMUM_FOOD_FOR_EATING = 10;
 
     public Animal(String name, int runLimit, int swimLimit) {
         this.name = name;
