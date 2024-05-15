@@ -10,12 +10,13 @@ public class Dog extends Animal {
     public boolean eat() {
         return true;
     }
+    
+    @Override
+    public void swim(int distance) {
+        super.swim(distance);
+    }
 
     public static int getDogCount() {
         return dogCount;
-    }
-
-    public static void setDogCount(int count) {
-        dogCount = count;
     }
 }
