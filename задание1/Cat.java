@@ -1,6 +1,5 @@
 public class Cat extends Animal {
     private static int catCount = 0;
-    private static final int MINIMUM_FOOD_FOR_EATING = 10;
     private boolean isFull;
 
     public Cat(String name, int food, boolean isFull) {
@@ -21,15 +20,16 @@ public class Cat extends Animal {
         }
     }
 
+    @Override
+    public void swim(int distance) {
+        System.out.printf("%s не умеет плавать.%n", name);
+    }
+
     public boolean getIsFull() {
         return isFull;
     }
 
     public static int getCatCount() {
         return catCount;
-    }
-
-    public static void setCatCount(int count) {
-        catCount = count;
     }
 }
