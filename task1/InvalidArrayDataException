@@ -1,5 +1,0 @@
-public class InvalidArrayDataException extends Exception {
-    public InvalidArrayDataException(String message) {
-        super(message);
-    }
-}
